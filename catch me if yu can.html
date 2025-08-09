@@ -46,3 +46,38 @@
 
     </style>
 </head>
+<body>
+
+    <!-- The button that will move around -->
+    <button id="unclickable-button">Catch Me If You Can!</button>
+
+    <script>
+        // JavaScript to make the button move
+        const button = document.getElementById('unclickable-button');
+
+        // Add an event listener that triggers when the mouse cursor hovers over the button
+        button.addEventListener('mouseover', () => {
+            // Get the width and height of the browser window
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            // Get the dimensions of the button itself to prevent it from going off-screen
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+
+            // Calculate a new random X and Y position
+            // We subtract the button's dimensions from the viewport's to ensure
+            // the button's edges don't go past the screen's edges.
+            const newX = Math.random() * (viewportWidth - buttonWidth);
+            const newY = Math.random() * (viewportHeight - buttonHeight);
+
+            // Apply the new position to the button's style
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+            
+            // We no longer need the transform property after the initial centering
+            button.style.transform = 'translate(0, 0)';
+        });
+    </script>
+
+
